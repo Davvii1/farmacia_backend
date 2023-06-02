@@ -21,6 +21,10 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
+app.get("/", (req, res) => {
+  res.json({ msg: "Servidor de Farmacia Curación" });
+});
+
 app.get("/appointments", (req, res) => {
   const query =
     "SELECT DATE_FORMAT(citas.datetime, '%Y-%m-%d %H:%i:%s') as datetime, usuarios.name, usuarios.email, usuarios.phone FROM citas INNER JOIN usuarios ON citas.patient_id = usuarios.id";
